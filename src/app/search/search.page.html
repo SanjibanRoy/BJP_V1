@@ -1,0 +1,74 @@
+<!-- search.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Search Bar -->
+  
+
+  <!-- <ion-row>
+    <ion-col size="8">
+      <ion-searchbar placeholder="Search" [(ngModel)]="term" animated="true"></ion-searchbar>
+    </ion-col>
+    <ion-col>
+      <ion-button color="primary"><ion-icon name="camera-outline"></ion-icon>  Capture</ion-button>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-item>
+    <!-- <ion-searchbar placeholder="Search" [(ngModel)]="term" animated="true"></ion-searchbar> -->
+    <ion-searchbar placeholder="Search" id='search' animated="true"></ion-searchbar>
+    <ion-button color="primary" (click)='search()'><ion-icon name="search-circle-outline"></ion-icon>  Search</ion-button>
+  </ion-item>
+  <!-- List Items -->
+  <!-- <ion-list>
+    <ion-item *ngFor="let item of filterData | filter:term">
+      <ion-label>{{item.firstName}} {{item.lastName}}</ion-label>
+    </ion-item>
+  </ion-list> -->
+
+  <div *ngFor="let data of row_data" (click)="next(data.id)">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Name: {{data.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="6">
+            VoterId:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+            {{data.voterid}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Polling Station:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+            {{data.ps}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Husband/Father Name:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+            {{data.guardian}}
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

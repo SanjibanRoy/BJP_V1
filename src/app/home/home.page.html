@@ -1,36 +1,258 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-     Image Server Upload
-    </ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
- 
-<ion-content padding>
-  <h3 *ngIf="images.length == 0" text-center>Please Select Image!</h3>
- 
-  <ion-list>
-    <ion-item *ngFor="let img of images; index as pos" text-wrap>
-      <ion-thumbnail slot="start">
-        <ion-img [src]="img.path"></ion-img>
-      </ion-thumbnail>
-      <ion-label>
-        {{ img.name }}
-      </ion-label>
-      <ion-button slot="end" fill="clear" (click)="startUpload(img)">
-        <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
-      </ion-button>
-      <ion-button slot="end" fill="clear" (click)="deleteImage(img, pos)">
-        <ion-icon slot="icon-only" name="trash"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <img src="https://lh3.googleusercontent.com/proxy/620YgJOTfw1_gyo-0gb_tfbM1RZT61RWAxX8bklqdV4JVkQed21DKO9gM06t3EHc-fIQRGIxnMUcOOGT7gN51hoRCDjH6jRHXo4B0Nn2o77Qug0bOZVKt7QZmt4" />
+    <ion-card-header>
+      <ion-card-subtitle>Survey</ion-card-subtitle>
+      <ion-card-title>Bharatiya Janata Party</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="6">
+          Total Survey Done:
+        </ion-col>
+        <ion-col>
+         {{yes}}
+        </ion-col>
+        <ion-col>
+         out of  {{total}}
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-card-title>Survey</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="6">
+          Total Survey Done:
+        </ion-col>
+        <ion-col>
+         0
+        </ion-col>
+        <ion-col>
+         out of 20
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card> -->
+  <div class="fivesurvey">
+    <p>Last 5 Survey</p>
+    <div *ngFor='let data of row_data'>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Name: {{data.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="6">
+            VoterId:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+            {{data.voterid}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Polling Station:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+            {{data.ps}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Husband/Father Name:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+            {{data.guardian}}
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    </div>
+
+    <!-- <ion-card>
+      <ion-card-header>
+        <ion-card-title>Name: S Roy</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="6">
+            VoterId:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           ASDA45
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Address:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           DSA
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Husband/Father Name:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           ASDA45
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Name: S Roy</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="6">
+            VoterId:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           ASDA45
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Address:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           DSA
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Husband/Father Name:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           ASDA45
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Name: S Roy</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="6">
+            VoterId:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           ASDA45
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Address:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           DSA
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Husband/Father Name:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           ASDA45
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+
+
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Name: S Roy</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="6">
+            VoterId:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           ASDA45
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Address:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           DSA
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            Husband/Father Name:
+          </ion-col>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+           ASDA45
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card> -->
+
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
+    <ion-fab-button>
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
- 
-<ion-footer>
-  <ion-toolbar color="primary">
-    <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
-      <ion-icon slot="start" name="camera"></ion-icon>
-      Select Image</ion-button>
-  </ion-toolbar>
-</ion-footer>

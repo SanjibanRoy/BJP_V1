@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Survey Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>*Field are mandatory</ion-card-subtitle>
+      <!-- <ion-card-title>Card Title</ion-card-title> -->
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-input placeholder="placeholder" value="{{name}}" disabled></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>VoterId:</ion-label>
+        <ion-input placeholder="placeholder"  value="{{voterid}}" disabled></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Husband/Parent Name:</ion-label>
+        <ion-input placeholder="placeholder"  value="{{guardian}}" disabled></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>House no:</ion-label>
+        <ion-input placeholder="placeholder"  value="{{hn}}" disabled></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Age:</ion-label>
+        <ion-input placeholder="placeholder"  value="{{age}}" disabled></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Polling Station:</ion-label>
+        <ion-input placeholder="placeholder"  value="{{ps}}" disabled></ion-input>
+      </ion-item>
+     
+     <ion-list>
+      <ion-radio-group value="cord">
+        <ion-list-header>
+          <ion-label>
+           Vote for BJP
+          </ion-label>
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-label>Yes</ion-label>
+          <ion-radio value="cord"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>No</ion-label>
+          <ion-radio value="duesenberg"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>No Answer</ion-label>
+          <ion-radio value="hudson"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <ion-item>
+      <ion-label>Capture Image:</ion-label>
+      <ion-button color="primary" (click)='selectImage()'><ion-icon name="camera-outline"></ion-icon>  Capture</ion-button>
+    </ion-item>
+    <ion-grid *ngFor="let img of images; index as pos" text-wrap>
+
+      <ion-img [src]="img.path" style="width: 300px; height: 250px;"></ion-img>
+
+    </ion-grid>
+    <br>
+    <ion-button expand="full" (click)=submit() >Submit</ion-button>
+
+    </ion-card-content>
+  </ion-card>  
+</ion-content>
