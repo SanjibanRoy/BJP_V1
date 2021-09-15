@@ -24,8 +24,12 @@ export class HomePage implements OnInit {
     private http: HttpClient,
     private loadingController: LoadingController) {}
 
+    ionViewDidEnter() {
+      this.user = localStorage.getItem('username')
+      this.getdata()
+    }
     ngOnInit() {
-    this.user = this.activeRoute.snapshot.paramMap.get('id')
+    this.user = localStorage.getItem('username')
     this.getdata()
     }
     getdata(){

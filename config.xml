@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Server Conf. Test</name>
+    <name>BJP Survey</name>
     <description>An App developed for Testing Server.</description>
     <author email="sanjibanroy53@gmail.com.com" href="http://ionicframework.com/">Sanjiban Roy</author>
     <content src="index.html" />

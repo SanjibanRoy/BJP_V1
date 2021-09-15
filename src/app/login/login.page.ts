@@ -27,8 +27,8 @@ export class LoginPage implements OnInit {
     var user=localStorage.getItem('username')
     setTimeout(async () => {
       loading.dismiss();
-      if (user=='True') {
-        this.router.navigateByUrl('home/'+this.ab1);
+      if (user) {
+        this.router.navigateByUrl('home/'+user);
       }
       else {
         this.presentToast1('Session Expire ! please login.')
@@ -67,7 +67,7 @@ export class LoginPage implements OnInit {
         if (res['success']) {
           var id= res['username']
           var type=this.user
-          localStorage.setItem('username', 'True')
+          localStorage.setItem('username', id)
           this.router.navigateByUrl('home/'+id);
 
         } else {

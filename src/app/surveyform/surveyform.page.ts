@@ -62,6 +62,7 @@ export class SurveyformPage implements OnInit {
   ngOnInit() {
     this.id = this.activeRoute.snapshot.paramMap.get('id')
     this.getdata()
+    this.checkGPSPermission()
     
   }
   getdata(){
@@ -216,6 +217,10 @@ export class SurveyformPage implements OnInit {
         formData.append('vote', vote);
         formData.append('id', this.id);
         formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
+        formData.append('lat', this.lat)
+        formData.append('lon', this.lng)
+        var username = localStorage.getItem('username')
+        formData.append('userid', username);
         this.uploadImageData(formData);
       };
       reader.readAsArrayBuffer(file);
@@ -223,12 +228,11 @@ export class SurveyformPage implements OnInit {
 
   }
   async uploadImageData(formData: FormData) {
-    
     const loading = await this.loadingController.create({
       message: 'Submitting Data...',
     });
     await loading.present();
-    this.http.post("https://mobileapp.nesdr.gov.in/ASDMA/upload_main.php", formData)
+    this.http.post("https://waterresourcemanipur.in/api/survey/upload_main.php", formData)
       .pipe(
         finalize(() => {
          
@@ -236,7 +240,7 @@ export class SurveyformPage implements OnInit {
       )
       .subscribe(res => {
         loading.dismiss();
-        alert(JSON.stringify(res))
+        //alert(JSON.stringify(res))
         if (res['success']) {
           this.thankyou()
         } else {
@@ -322,7 +326,7 @@ export class SurveyformPage implements OnInit {
   thankyou() {
     this.alertController.create({
       header: 'Thank You',
-      message: 'Thank You! Your record has been sent for approval',
+      message: 'Thank You! Your record has been sent',
       backdropDismiss: true,
       buttons: [{
         text: 'Ok',
@@ -331,11 +335,11 @@ export class SurveyformPage implements OnInit {
           
         }
       }, {
-        text: 'Upload Again',
+        text: 'New Upload',
         role: 'cancel',
         handler: () => {
-          window.location.reload();
-          //this.router.navigateByUrl('dashboard/' + this.user + '/' + this.type);
+          //window.location.reload();
+          this.router.navigateByUrl('search');
         }
       }]
     })

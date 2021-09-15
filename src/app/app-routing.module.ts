@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'home/:id',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   },
   {
-    path: 'surveyform',
+    path: 'surveyform/:id',
     loadChildren: () => import('./surveyform/surveyform.module').then( m => m.SurveyformPageModule)
   },
 ];
