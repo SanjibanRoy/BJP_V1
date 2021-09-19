@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
     setTimeout(async () => {
       loading.dismiss();
       if (user) {
-        this.router.navigateByUrl('home/'+user);
+       this.router.navigateByUrl('home');
       }
       else {
         this.presentToast1('Session Expire ! please login.')
@@ -56,7 +56,7 @@ export class LoginPage implements OnInit {
     });
     await loading.present();
 
-    this.http.post("https://waterresourcemanipur.in/api/survey/login.php", formData)
+    this.http.post("https://waterresourcemanipur.in/bjp/api/survey/login.php", formData)
       .pipe(
         finalize(() => {
           loading.dismiss();
@@ -68,7 +68,7 @@ export class LoginPage implements OnInit {
           var id= res['username']
           var type=this.user
           localStorage.setItem('username', id)
-          this.router.navigateByUrl('home/'+id);
+          this.router.navigateByUrl('home');
 
         } else {
           this.presentToast1('Username is not registerd ! Please contact admin.')

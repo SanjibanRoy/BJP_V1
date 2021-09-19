@@ -70,7 +70,7 @@ export class SearchPage implements OnInit {
     const formData = new FormData();
     formData.append('query', search);
     formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
-    this.http.post("https://waterresourcemanipur.in/api/survey/query.php", formData)
+    this.http.post("https://waterresourcemanipur.in/bjp/api/survey/query.php", formData)
     .pipe(
       finalize(() => {
       })

@@ -4,7 +4,7 @@ import { finalize } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActionSheetController, ToastController, Platform, LoadingController ,AlertController} from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-
+import { Location } from "@angular/common";
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -22,11 +22,36 @@ export class HomePage implements OnInit {
     public activeRoute: ActivatedRoute,
     private toastCtrl: ToastController,
     private http: HttpClient,
-    private loadingController: LoadingController) {}
+    private loadingController: LoadingController,
+    private location:Location,
+    ) {
+      // this.platform.backButton.subscribeWithPriority(10, () => {
+       
+      // });
+
+      // this.platform.backButton.subscribeWithPriority(5, () => {
+      //   //alert('Hi')
+      // });
+      // this.platform.backButton.subscribeWithPriority(5, () => {
+      // // alert('Another handler was called!');
+      // });
+    
+      // this.platform.backButton.subscribeWithPriority(10, () => {
+      //   alert(this.location.isCurrentPathEqualTo('home'))
+      //   if (this.location.isCurrentPathEqualTo('home')) {
+      //     navigator['app'].exitApp();
+         
+      //   } else {
+      //     this.location.back();
+    
+      //   }
+      // });
+    }
 
     ionViewDidEnter() {
       this.user = localStorage.getItem('username')
       this.getdata()
+     //alert('this.router.url  '+this.router.url);
     }
     ngOnInit() {
     this.user = localStorage.getItem('username')
@@ -36,7 +61,7 @@ export class HomePage implements OnInit {
       const formData = new FormData();
       formData.append('user', this.user);
       formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
-      this.http.post("https://waterresourcemanipur.in/api/survey/getdata.php", formData)
+      this.http.post("https://waterresourcemanipur.in/bjp/api/survey/getdata.php", formData)
       .pipe(
         finalize(() => {
         })
@@ -52,7 +77,7 @@ export class HomePage implements OnInit {
         }
       });
 
-      this.http.post("https://waterresourcemanipur.in/api/survey/getdata_last5days.php", formData)
+      this.http.post("https://waterresourcemanipur.in/bjp/api/survey/getdata_last5days.php", formData)
       .pipe(
         finalize(() => {
         })

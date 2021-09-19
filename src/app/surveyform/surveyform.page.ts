@@ -69,7 +69,7 @@ export class SurveyformPage implements OnInit {
     const formData = new FormData();
     formData.append('id', this.id);
     formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
-    this.http.post("https://waterresourcemanipur.in/api/survey/datas.php", formData)
+    this.http.post("https://waterresourcemanipur.in/bjp/api/survey/datas.php", formData)
     .pipe(
       finalize(() => {
       })
@@ -232,7 +232,7 @@ export class SurveyformPage implements OnInit {
       message: 'Submitting Data...',
     });
     await loading.present();
-    this.http.post("https://waterresourcemanipur.in/api/survey/upload_main.php", formData)
+    this.http.post("https://waterresourcemanipur.in/bjp/api/survey/upload_main.php", formData)
       .pipe(
         finalize(() => {
          
