@@ -180,10 +180,8 @@ export class SurveyformPage implements OnInit {
     }
   }
   submit() {
-    if(this.imgspath==''){
-      this.presentToast('Fields cannot be empty.');
-    }
-    else{
+    alert(this.imgspath)
+    if(this.imgspath){
       this.file.resolveLocalFilesystemUrl(this.imgspath)
       .then(entry => {
         (<FileEntry>entry).file(file => this.readFile(file))
@@ -192,7 +190,71 @@ export class SurveyformPage implements OnInit {
         this.presentToast('Error while reading file.');
       });
     }
+    else{
+      this.noimage()
+      
+    }
    
+  }
+  async noimage(){
+    var name = ((document.getElementById("name") as HTMLInputElement).value);
+    var age = ((document.getElementById("age") as HTMLInputElement).value);
+    var sex
+    var male = ((document.getElementById("male") as HTMLInputElement).checked);
+    if(male){sex='male'}
+    var female = ((document.getElementById("female") as HTMLInputElement).checked);
+    if(female){sex='female'}
+    var others = ((document.getElementById("others") as HTMLInputElement).checked);
+    if(others){sex='others'}
+    var gurdian = ((document.getElementById("gurdian") as HTMLInputElement).value);
+    var village = ((document.getElementById("village") as HTMLInputElement).value);
+    var villageno = ((document.getElementById("villageno") as HTMLInputElement).value);
+    var voterid = ((document.getElementById("voterid") as HTMLInputElement).value);
+    var suggestion
+    var yes = ((document.getElementById("yes") as HTMLInputElement).checked);
+    if(yes){suggestion='yes'}
+    var no = ((document.getElementById("no") as HTMLInputElement).checked);
+    if(no){suggestion='no'}
+    var notyet = ((document.getElementById("notyet") as HTMLInputElement).checked);
+    if(notyet){suggestion='not yet'}
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('age', age);
+    formData.append('sex', sex);
+    formData.append('gurdian', gurdian);
+    formData.append('village', village);
+    formData.append('villageno', villageno);
+    formData.append('voterid', voterid);
+    formData.append('suggestion', suggestion);
+
+    formData.append('id', this.id);
+    formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
+    formData.append('lat', this.lat)
+    formData.append('lon', this.lng)
+    var username = localStorage.getItem('username')
+    formData.append('userid', username);
+
+    const loading = await this.loadingController.create({
+      message: 'Submitting Data...',
+    });
+    await loading.present();
+    this.http.post("https://waterresourcemanipur.in/bjp/api/survey/upload_main1.php", formData)
+      .pipe(
+        finalize(() => {
+         
+        })
+      )
+      .subscribe(res => {
+        loading.dismiss();
+        //alert(JSON.stringify(res))
+        if (res['success']) {
+          this.thankyou()
+        } else {
+          this.presentToast('File upload failed.')
+
+        }
+      });
+
   }
 
   async presentToast(text) {
@@ -205,7 +267,29 @@ export class SurveyformPage implements OnInit {
   }
 
   readFile(file: any) {
-    var vote = ((document.getElementById("votee") as HTMLInputElement).value);
+    var name = ((document.getElementById("name") as HTMLInputElement).value);
+    var age = ((document.getElementById("age") as HTMLInputElement).value);
+    var sex
+    var male = ((document.getElementById("male") as HTMLInputElement).checked);
+    if(male){sex='male'}
+    var female = ((document.getElementById("female") as HTMLInputElement).checked);
+    if(female){sex='female'}
+    var others = ((document.getElementById("others") as HTMLInputElement).checked);
+    if(others){sex='others'}
+    var gurdian = ((document.getElementById("gurdian") as HTMLInputElement).value);
+    var village = ((document.getElementById("village") as HTMLInputElement).value);
+    var villageno = ((document.getElementById("villageno") as HTMLInputElement).value);
+    var voterid = ((document.getElementById("voterid") as HTMLInputElement).value);
+    var suggestion
+    var yes = ((document.getElementById("yes") as HTMLInputElement).checked);
+    if(yes){suggestion='yes'}
+    var no = ((document.getElementById("no") as HTMLInputElement).checked);
+    if(no){suggestion='no'}
+    var notyet = ((document.getElementById("notyet") as HTMLInputElement).checked);
+    if(notyet){suggestion='not yet'}
+
+
+    
       const reader = new FileReader();
       reader.onload = () => {
         const formData = new FormData();
@@ -214,7 +298,15 @@ export class SurveyformPage implements OnInit {
         });
         formData.append('file', imgBlob, file.name);
         //alert(FarmerName)
-        formData.append('vote', vote);
+        formData.append('name', name);
+        formData.append('age', age);
+        formData.append('sex', sex);
+        formData.append('gurdian', gurdian);
+        formData.append('village', village);
+        formData.append('villageno', villageno);
+        formData.append('voterid', voterid);
+        formData.append('suggestion', suggestion);
+
         formData.append('id', this.id);
         formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
         formData.append('lat', this.lat)

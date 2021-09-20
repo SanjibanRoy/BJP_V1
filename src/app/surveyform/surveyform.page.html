@@ -13,36 +13,83 @@
   
     <ion-card-content>
       <ion-item>
-        <ion-label>Name:</ion-label>
-        <ion-input placeholder="placeholder" value="{{name}}" disabled></ion-input>
+        <ion-label>*Name:</ion-label>
+        <ion-input placeholder="Enter Name" id="name" ></ion-input>
+      </ion-item>
+
+        <div class="test">
+          <ion-label>*Gender:</ion-label>
+          <ion-row>
+            <ion-col>
+              <input type="radio" id="male"
+              name="contact" value="Male" checked>&nbsp;<span class="re">Male</span>
+         
+            </ion-col>
+            <ion-col>
+              <input type="radio" id="female"
+              name="contact" value="Female">&nbsp;<span class="re">Female</span>
+         
+            </ion-col>
+            <ion-col>
+              <input type="radio" id="others"
+              name="contact" value="Female">&nbsp;<span class="re">Others</span>
+         
+            </ion-col>
+          </ion-row>
+        </div>
+
+      <ion-item>
+        <ion-label>*Age:</ion-label>
+        <ion-input placeholder="Enter Age" id="age"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>VoterId:</ion-label>
-        <ion-input placeholder="placeholder"  value="{{voterid}}" disabled></ion-input>
+        <ion-label>*Guardian Name:</ion-label>
+        <ion-input placeholder="Enter Guardian Name" id="gurdian" ></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Husband/Parent Name:</ion-label>
-        <ion-input placeholder="placeholder"  value="{{guardian}}" disabled></ion-input>
+        <ion-label>Village:</ion-label>
+        <ion-input placeholder="Enter Village"  id="village" ></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>House no:</ion-label>
-        <ion-input placeholder="placeholder"  value="{{hn}}" disabled></ion-input>
+        <ion-label>Village No:</ion-label>
+        <ion-input placeholder="Enter Village No" id="villageno" ></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Age:</ion-label>
-        <ion-input placeholder="placeholder"  value="{{age}}" disabled></ion-input>
+        <ion-label>Voter ID:</ion-label>
+        <ion-input placeholder="Enter Voter ID" id="voterid"  ></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label>Polling Station:</ion-label>
-        <ion-input placeholder="placeholder"  value="{{ps}}" disabled></ion-input>
-      </ion-item>
      
-     <ion-list>
+
+      <div class="test">
+        <ion-label>Suggestions:</ion-label>
+        <ion-row>
+          <ion-col>
+            <input type="radio" id="yes"
+            name="contact1" value="Yes" >&nbsp;<span class="re">Yes</span>
+       
+          </ion-col>
+          <ion-col>
+            <input type="radio" id="no"
+            name="contact1" value="No">&nbsp;<span class="re">No</span>
+       
+          </ion-col>
+          <ion-col>
+            <input type="radio" id="notyet"
+            name="contact1" value="Not Yet" checked>&nbsp;<span class="re">Not Yet</span>
+       
+          </ion-col>
+        </ion-row>
+      </div>
+      
+  
+
+     
+     <!-- <ion-list>
       <ion-radio-group value="yes" id="votee">
         <ion-list-header>
           <ion-label>
@@ -65,7 +112,7 @@
           <ion-radio value="Nota"></ion-radio>
         </ion-item>
       </ion-radio-group>
-    </ion-list>
+    </ion-list> -->
     <ion-item>
       <ion-label>Capture Image:</ion-label>
       <ion-button color="primary" (click)='selectImage()'><ion-icon name="camera-outline"></ion-icon>  Capture</ion-button>

@@ -104,7 +104,7 @@ export class HomePage implements OnInit {
   next()
   {
     //alert(id)
-    this.router.navigateByUrl('search');
+    this.router.navigateByUrl('surveyform/'+1);
   }
 
 }
