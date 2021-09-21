@@ -58,6 +58,7 @@ export class HomePage implements OnInit {
     this.getdata()
     }
     getdata(){
+      console.log(this.user)
       const formData = new FormData();
       formData.append('user', this.user);
       formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
@@ -93,7 +94,7 @@ export class HomePage implements OnInit {
             name: ids[0][i].name,
             guardian: ids[0][i].guardian,
             voterid: ids[0][i].voterid,
-            ps: ids[0][i].ps,
+            ps: ids[0][i].village,
             id: ids[0][i].id
 
           })

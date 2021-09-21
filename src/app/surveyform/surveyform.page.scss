@@ -1,4 +1,31 @@
 .test {
-  color: white;
+  color: black;
   padding-left: 15px;
+}
+ion-content {
+  // --background: rgb(5, 25, 44);
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+}
+
+ion-card-content {
+  // --background: rgb(5, 25, 44);
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+}
+
+ion-card {
+  // --background: rgb(5, 25, 44);
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+}
+ion-item {
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+  --color: black;
+}
+ion-toolbar {
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+  --color: black;
 }

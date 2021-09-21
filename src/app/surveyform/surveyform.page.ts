@@ -41,6 +41,7 @@ export class SurveyformPage implements OnInit {
   correctPath:any;
   public path: string; 
   placename:any
+  dataas=[]
   constructor(
     public alertController: AlertController, private zone:NgZone,
     private androidPermissions: AndroidPermissions,
@@ -61,45 +62,30 @@ export class SurveyformPage implements OnInit {
 
   ngOnInit() {
     this.id = this.activeRoute.snapshot.paramMap.get('id')
-    this.getdata()
+    this.getdistrict()
     this.checkGPSPermission()
     
   }
-  getdata(){
-    const formData = new FormData();
-    formData.append('id', this.id);
-    formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
-    this.http.post("https://waterresourcemanipur.in/bjp/api/survey/datas.php", formData)
-    .pipe(
-      finalize(() => {
-      })
-    )
-    .subscribe(res => {
-      var ids = [];
-      ids.push(res)
-      this.name=ids[0][0].name
-      this.voterid=ids[0][0].voterid
-      this.ps=ids[0][0].ps
-      this.age=ids[0][0].age
-      this.hn=ids[0][0].housenumber
-      this.guardian=ids[0][0].guardian
-
-      // var ids = [];
-      // ids.push(res)
-      // this.row_data = []
-      // for (var i = 0; i < ids[0].length; i++) {
-      //   console.log(ids[0][i])
-      //   this.row_data.push({
-      //     name: ids[0][i].name,
-      //     guardian: ids[0][i].guardian,
-      //     voterid: ids[0][i].voterid,
-      //     ps: ids[0][i].ps,
-      //     id: ids[0][i].id
-
-      //   })
-      // }
-    })
-  }
+  // getdata(){
+  //   const formData = new FormData();
+  //   formData.append('id', this.id);
+  //   formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
+  //   this.http.post("https://waterresourcemanipur.in/bjp/api/survey/datas.php", formData)
+  //   .pipe(
+  //     finalize(() => {
+  //     })
+  //   )
+  //   .subscribe(res => {
+  //     var ids = [];
+  //     ids.push(res)
+  //     this.name=ids[0][0].name
+  //     this.voterid=ids[0][0].voterid
+  //     this.ps=ids[0][0].ps
+  //     this.age=ids[0][0].age
+  //     this.hn=ids[0][0].housenumber
+  //     this.guardian=ids[0][0].guardian
+  //   })
+  // }
 
   capture() {
     this.geolocation.getCurrentPosition({
@@ -180,7 +166,6 @@ export class SurveyformPage implements OnInit {
     }
   }
   submit() {
-    alert(this.imgspath)
     if(this.imgspath){
       this.file.resolveLocalFilesystemUrl(this.imgspath)
       .then(entry => {
@@ -209,6 +194,7 @@ export class SurveyformPage implements OnInit {
     var gurdian = ((document.getElementById("gurdian") as HTMLInputElement).value);
     var village = ((document.getElementById("village") as HTMLInputElement).value);
     var villageno = ((document.getElementById("villageno") as HTMLInputElement).value);
+    var house = ((document.getElementById("house") as HTMLInputElement).value);
     var voterid = ((document.getElementById("voterid") as HTMLInputElement).value);
     var suggestion
     var yes = ((document.getElementById("yes") as HTMLInputElement).checked);
@@ -216,7 +202,8 @@ export class SurveyformPage implements OnInit {
     var no = ((document.getElementById("no") as HTMLInputElement).checked);
     if(no){suggestion='no'}
     var notyet = ((document.getElementById("notyet") as HTMLInputElement).checked);
-    if(notyet){suggestion='not yet'}
+    if(notyet){suggestion='Nota'}
+    var poll = ((document.getElementById("poll") as HTMLInputElement).value);
     const formData = new FormData();
     formData.append('name', name);
     formData.append('age', age);
@@ -226,14 +213,15 @@ export class SurveyformPage implements OnInit {
     formData.append('villageno', villageno);
     formData.append('voterid', voterid);
     formData.append('suggestion', suggestion);
-
+    formData.append('house', house);
     formData.append('id', this.id);
     formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
     formData.append('lat', this.lat)
     formData.append('lon', this.lng)
+    formData.append('poll', poll)
     var username = localStorage.getItem('username')
     formData.append('userid', username);
-
+    if(name && age && gurdian && poll){
     const loading = await this.loadingController.create({
       message: 'Submitting Data...',
     });
@@ -254,6 +242,10 @@ export class SurveyformPage implements OnInit {
 
         }
       });
+    }
+    else{
+      this.presentToast('Some Field are missing')
+    }
 
   }
 
@@ -279,6 +271,7 @@ export class SurveyformPage implements OnInit {
     var gurdian = ((document.getElementById("gurdian") as HTMLInputElement).value);
     var village = ((document.getElementById("village") as HTMLInputElement).value);
     var villageno = ((document.getElementById("villageno") as HTMLInputElement).value);
+    var house = ((document.getElementById("house") as HTMLInputElement).value);
     var voterid = ((document.getElementById("voterid") as HTMLInputElement).value);
     var suggestion
     var yes = ((document.getElementById("yes") as HTMLInputElement).checked);
@@ -286,10 +279,9 @@ export class SurveyformPage implements OnInit {
     var no = ((document.getElementById("no") as HTMLInputElement).checked);
     if(no){suggestion='no'}
     var notyet = ((document.getElementById("notyet") as HTMLInputElement).checked);
-    if(notyet){suggestion='not yet'}
-
-
-    
+    if(notyet){suggestion='Nota'}
+    var poll = ((document.getElementById("poll") as HTMLInputElement).value);
+    if(name && age && gurdian && poll){
       const reader = new FileReader();
       reader.onload = () => {
         const formData = new FormData();
@@ -306,16 +298,24 @@ export class SurveyformPage implements OnInit {
         formData.append('villageno', villageno);
         formData.append('voterid', voterid);
         formData.append('suggestion', suggestion);
-
+        formData.append('house', house);
         formData.append('id', this.id);
         formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
         formData.append('lat', this.lat)
         formData.append('lon', this.lng)
+        formData.append('poll', poll)
         var username = localStorage.getItem('username')
         formData.append('userid', username);
         this.uploadImageData(formData);
       };
       reader.readAsArrayBuffer(file);
+    }
+    else{
+      this.presentToast('Some Field are missing')
+    }
+
+    
+   
 
 
   }
@@ -397,6 +397,7 @@ export class SurveyformPage implements OnInit {
       this.lat = resp.coords.latitude;
       this.lng= resp.coords.longitude;
       this.accuracy = Math.round(resp.coords.accuracy);
+      this.submit()
       if(this.accuracy>5 && this.accuracy<70){
         this.acc=1
       }
@@ -423,6 +424,7 @@ export class SurveyformPage implements OnInit {
       buttons: [{
         text: 'Ok',
         handler: () => {
+          window.location.reload();
           //this.router.navigateByUrl('dashboard/' + this.user + '/' + this.type);
           
         }
@@ -430,14 +432,33 @@ export class SurveyformPage implements OnInit {
         text: 'New Upload',
         role: 'cancel',
         handler: () => {
-          //window.location.reload();
-          this.router.navigateByUrl('search');
+          window.location.reload();
+          //this.router.navigateByUrl('search');
         }
       }]
     })
       .then(alert => {
         alert.present();
       });
+  }
+
+  getdistrict(){
+    this.dataas=[]
+    //alert('Hi')
+    fetch('https://waterresourcemanipur.in/bjp/api/survey/getpoll.php').then(res => res.json())
+    .then(json => {
+      
+      console.log(json)
+      this.zone.run(() => {
+      for(var i=0;i<json.length;i++){
+        this.dataas.push({
+          dist:json[i].poll_no
+        })
+      }
+    });
+    });
+   
+    
   }
 
 }

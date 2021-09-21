@@ -40,12 +40,20 @@
 
       <ion-item>
         <ion-label>*Age:</ion-label>
-        <ion-input placeholder="Enter Age" id="age"></ion-input>
+        <ion-input type='number' placeholder="Enter Age" id="age"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>*Guardian Name:</ion-label>
         <ion-input placeholder="Enter Guardian Name" id="gurdian" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>*Polling Station:</ion-label>
+        <ion-select  id="poll" >
+          <ion-select-option>Select</ion-select-option>
+          <ion-select-option *ngFor="let item of dataas; index as pos" value="{{item.dist}}">{{item.dist}}</ion-select-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
@@ -56,6 +64,11 @@
       <ion-item>
         <ion-label>Village No:</ion-label>
         <ion-input placeholder="Enter Village No" id="villageno" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>House No:</ion-label>
+        <ion-input placeholder="Enter Village No" id="house" ></ion-input>
       </ion-item>
 
       <ion-item>
@@ -80,7 +93,7 @@
           </ion-col>
           <ion-col>
             <input type="radio" id="notyet"
-            name="contact1" value="Not Yet" checked>&nbsp;<span class="re">Not Yet</span>
+            name="contact1" value="Nota" checked>&nbsp;<span class="re">Not Yet</span>
        
           </ion-col>
         </ion-row>
@@ -123,7 +136,7 @@
 
     </ion-grid>
     <br>
-    <ion-button expand="full" (click)=submit() >Submit</ion-button>
+    <ion-button expand="full" (click)=getLocationCoordinates() >Submit</ion-button>
 
     </ion-card-content>
   </ion-card>  

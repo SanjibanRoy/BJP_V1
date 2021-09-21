@@ -28,3 +28,37 @@
 .fivesurvey {
   margin-left: 13px;
 }
+ion-content {
+  // --background: rgb(5, 25, 44);
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+}
+
+ion-card-content {
+  // --background: rgb(5, 25, 44);
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+  --color: black;
+}
+
+ion-card {
+  // --background: rgb(5, 25, 44);
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+  --color: black;
+}
+ion-item {
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+  --color: black;
+}
+ion-toolbar {
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+  --color: black;
+}
+ion-card-title {
+  --background: #ffffff;
+  --ion-color-base: #ffffff !important;
+  --color: black;
+}
