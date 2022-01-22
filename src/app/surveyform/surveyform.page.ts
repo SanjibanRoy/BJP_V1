@@ -64,28 +64,27 @@ export class SurveyformPage implements OnInit {
     this.id = this.activeRoute.snapshot.paramMap.get('id')
     this.getdistrict()
     this.checkGPSPermission()
+    this.getdata()
     
   }
-  // getdata(){
-  //   const formData = new FormData();
-  //   formData.append('id', this.id);
-  //   formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
-  //   this.http.post("https://waterresourcemanipur.in/bjp/api/survey/datas.php", formData)
-  //   .pipe(
-  //     finalize(() => {
-  //     })
-  //   )
-  //   .subscribe(res => {
-  //     var ids = [];
-  //     ids.push(res)
-  //     this.name=ids[0][0].name
-  //     this.voterid=ids[0][0].voterid
-  //     this.ps=ids[0][0].ps
-  //     this.age=ids[0][0].age
-  //     this.hn=ids[0][0].housenumber
-  //     this.guardian=ids[0][0].guardian
-  //   })
-  // }
+  getdata(){
+    const formData = new FormData();
+    formData.append('token', 'ZXYlmPt6OpAmaLFfjkdjldfjdlM')
+    this.http.post("https://waterresourcemanipur.in/bjp/api/survey/village.php", formData)
+    .pipe(
+      finalize(() => {
+      })
+    )
+    .subscribe(res => {
+      this.row_data=[]
+      var json=JSON.parse(JSON.stringify(res))
+      for(var i=0; i<json.length;i++){
+        this.row_data.push({
+          village: json[i].village
+        })
+      }
+    })
+  }
 
   capture() {
     this.geolocation.getCurrentPosition({
@@ -204,6 +203,7 @@ export class SurveyformPage implements OnInit {
     var notyet = ((document.getElementById("notyet") as HTMLInputElement).checked);
     if(notyet){suggestion='Nota'}
     var poll = ((document.getElementById("poll") as HTMLInputElement).value);
+    var remarks = ((document.getElementById("remarks") as HTMLInputElement).value);
     const formData = new FormData();
     formData.append('name', name);
     formData.append('age', age);
@@ -219,6 +219,7 @@ export class SurveyformPage implements OnInit {
     formData.append('lat', this.lat)
     formData.append('lon', this.lng)
     formData.append('poll', poll)
+    formData.append('remarks', remarks)
     var username = localStorage.getItem('username')
     formData.append('userid', username);
     if(name && age && gurdian && poll){
@@ -281,6 +282,7 @@ export class SurveyformPage implements OnInit {
     var notyet = ((document.getElementById("notyet") as HTMLInputElement).checked);
     if(notyet){suggestion='Nota'}
     var poll = ((document.getElementById("poll") as HTMLInputElement).value);
+    var remarks = ((document.getElementById("remarks") as HTMLInputElement).value);
     if(name && age && gurdian && poll){
       const reader = new FileReader();
       reader.onload = () => {
@@ -304,6 +306,7 @@ export class SurveyformPage implements OnInit {
         formData.append('lat', this.lat)
         formData.append('lon', this.lng)
         formData.append('poll', poll)
+        formData.append('remarks', remarks)
         var username = localStorage.getItem('username')
         formData.append('userid', username);
         this.uploadImageData(formData);
@@ -355,7 +358,7 @@ export class SurveyformPage implements OnInit {
         }
       },
       err => {
-        alert(err);
+        //alert(err);
       }
     );
   }

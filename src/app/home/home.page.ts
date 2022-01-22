@@ -36,16 +36,15 @@ export class HomePage implements OnInit {
       // // alert('Another handler was called!');
       // });
     
-      // this.platform.backButton.subscribeWithPriority(10, () => {
-      //   alert(this.location.isCurrentPathEqualTo('home'))
-      //   if (this.location.isCurrentPathEqualTo('home')) {
-      //     navigator['app'].exitApp();
+      this.platform.backButton.subscribeWithPriority(10, () => {
+        if (this.location.isCurrentPathEqualTo('/home') || this.location.isCurrentPathEqualTo('/login')) {
+          navigator['app'].exitApp();
          
-      //   } else {
-      //     this.location.back();
+        } else {
+          this.location.back();
     
-      //   }
-      // });
+        }
+      });
     }
 
     ionViewDidEnter() {
@@ -54,6 +53,7 @@ export class HomePage implements OnInit {
      //alert('this.router.url  '+this.router.url);
     }
     ngOnInit() {
+    console.log('this.router.url', this.router.url);
     this.user = localStorage.getItem('username')
     this.getdata()
     }
@@ -106,6 +106,10 @@ export class HomePage implements OnInit {
   {
     //alert(id)
     this.router.navigateByUrl('surveyform/'+1);
+  }
+  logout(){
+    localStorage.setItem('username', '')
+    this.router.navigateByUrl('login');
   }
 
 }

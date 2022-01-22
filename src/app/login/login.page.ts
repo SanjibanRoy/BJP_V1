@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { finalize } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActionSheetController, ToastController, Platform, LoadingController } from '@ionic/angular';
+import { Location } from "@angular/common";
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -17,14 +18,29 @@ export class LoginPage implements OnInit {
   ab2:any
   toggle=false
   ptype='password'
-  constructor(public router: Router, public activeRoute: ActivatedRoute, private toastCtrl: ToastController, private http: HttpClient, private loadingController: LoadingController) {}
+  content: string;
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
+  constructor(     private location:Location,   private platform: Platform,public router: Router, public activeRoute: ActivatedRoute, private toastCtrl: ToastController, private http: HttpClient, private loadingController: LoadingController) {}
   async ngOnInit() {
+    //alert('this.router.url  '+this.router.url);
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      //alert(this.location.isCurrentPathEqualTo('/home'))
+      if (this.location.isCurrentPathEqualTo('/home') || this.location.isCurrentPathEqualTo('/login')) {
+        navigator['app'].exitApp();
+       
+      } else {
+        this.location.back();
+  
+      }
+    });
     const loading = await this.loadingController.create({
       message: 'Auto Login...',
       duration: 2000
     });
     await loading.present();
     var user=localStorage.getItem('username')
+    //alert(user)
     setTimeout(async () => {
       loading.dismiss();
       if (user) {
@@ -35,6 +51,10 @@ export class LoginPage implements OnInit {
       }
     },
       3000)
+  }
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
   async presentToast1(text) {
     const toast = await this.toastCtrl.create({
@@ -68,6 +88,7 @@ export class LoginPage implements OnInit {
           var id= res['username']
           var type=this.user
           localStorage.setItem('username', id)
+          localStorage.setItem('login', 'login')
           this.router.navigateByUrl('home');
 
         } else {

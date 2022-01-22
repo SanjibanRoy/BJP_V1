@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content>
+<!-- <ion-content>
   <div class="middle">
     <div class="form">
       <div class="center">
@@ -31,4 +31,128 @@
     </div>
   </div>
   
+</ion-content> -->
+
+<ion-content no-padding style="--background: #FFFFFF;">
+  <div class="main">
+    <ion-card no-margin>
+      <ion-card-content>
+        <ion-row class="row">
+          <div class="fire-logo">
+            <img src="https://www.kindpng.com/picc/m/247-2478665_bjp-logo-png-photo-bharatiya-janata-party-transparent.png" class="img-logo">
+            <br>
+            <ion-text padding>
+              <h2 no-margin margin-vertical text-center style="color: #3c3c3c; font-size: xx-large;"><b>BJP SURVEY APP</b></h2>
+            </ion-text>
+            <ion-text padding>
+              <!-- <h4 no-margin margin-vertical text-center style="color: #8f8f8f; font-size: x-small;"><b>B J P</b></h4> -->
+            </ion-text>
+          </div>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input clearInput type="text" id="username" placeholder="username..."  class="input"
+              padding-horizontal clear-input="true" style="color: rgb(0, 0, 0);"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input clearInput [type]="passwordType"  id="password" placeholder="Password..." class="input"
+              padding-horizontal clear-input="true" style="color: rgb(0, 0, 0);"></ion-input>
+              
+          </ion-col>
+          
+        </ion-row>
+        <ion-row>
+          <ion-col (click)='hideShowPassword()'>
+            <p><ion-icon  [name]="passwordIcon"></ion-icon> Show Password</p>
+              
+          </ion-col>
+          
+        </ion-row>
+        <!-- <ion-row *ngIf="showOTPInput" class="OTP-border">
+          <ion-col>
+            <div>
+              <ion-input name="1" id="one" type="tel" [(ngModel)]="OTP[0]" maxlength="1" (keyup)="moveFocus(b)" class="otpinput"
+                padding-horizontal>
+              </ion-input>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              <ion-input name="2" id="two" type="tel" [(ngModel)]="OTP[1]" #b (keyup)="moveFocus(c)" maxlength="1" class="otpinput"
+                padding-horizontal>
+              </ion-input>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              <ion-input name="3" id="three" type="tel" [(ngModel)]="OTP[2]" #c (keyup)="moveFocus(d)" maxlength="1" class="otpinput"
+                padding-horizontal>
+              </ion-input>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              <ion-input name="4" id="four" type="tel" [(ngModel)]="OTP[3]" #d (keyup)="moveFocus(e)" maxlength="1" class="otpinput"
+                padding-horizontal>
+              </ion-input>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              <ion-input name="5" id="five" type="tel" [(ngModel)]="OTP[4]" #e (keyup)="moveFocus(f)" maxlength="1" class="otpinput"
+                padding-horizontal>
+              </ion-input>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              <ion-input name="6" id="six" type="tel" [(ngModel)]="OTP[5]" #f maxlength="1" class="otpinput"
+                padding-horizontal>
+              </ion-input>
+            </div>
+          </ion-col>
+        </ion-row> -->
+        <!-- <ion-row *ngIf="showOTPInput">
+          <ion-col size="9">
+            <ion-text class="small" style="color: #000; ">{{OTPmessage}}</ion-text>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button size="small" (click)="sendotp()">Resend</ion-button>
+          </ion-col>
+        </ion-row> -->
+        <ion-row>
+          <ion-col>
+            <!-- <ion-button *ngIf="!showOTPInput" expand="block" (click)="next()" color="undefined" class="transition">
+              <strong class="white">
+                Next</strong></ion-button> -->
+            <ion-button expand="block" (click)="login()" color="undefined" class="transition">
+              <strong class="white">
+                Login</strong></ion-button>
+          </ion-col>
+        </ion-row>
+
+        <!-- <ion-row>
+          <ion-col>
+            <ion-text text-center class="block" style="color: #8f8f8f;">Don't have have an account ?
+              <span class="bold" (click)="register()" style="color: #8f8f8f;">Register here</span></ion-text>
+          </ion-col>
+        </ion-row> -->
+        <!-- <ion-row>
+          <ion-col>
+            <ion-text text-center class="block bold" (click)="forgot()">Forgot Password</ion-text>
+          </ion-col>
+        </ion-row> -->
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
+<!-- <ion-footer text-center no-border >
+  <ion-toolbar text-center >
+    <P style="text-align: center; font-size: small; color: #8f8f8f;">
+      Developed by: <br>
+      North Eastern Space Applications Centre
+    </P>
+  </ion-toolbar>
+</ion-footer> -->

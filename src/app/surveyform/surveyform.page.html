@@ -13,6 +13,34 @@
   
     <ion-card-content>
       <ion-item>
+        <ion-label>*Polling Station:</ion-label>
+        <ion-select  id="poll" >
+          <ion-select-option>Select</ion-select-option>
+          <ion-select-option *ngFor="let item of dataas; index as pos" value="{{item.dist}}">{{item.dist}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      
+      <ion-item>
+        <ion-label>Village</ion-label>
+        <ion-select value="Salemthar" id="village">
+          <div *ngFor="let item of row_data">
+            <ion-select-option value="{{item.village}}">{{item.village}}</ion-select-option>
+          </div>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Village No:</ion-label>
+        <ion-input placeholder="Enter Village No" id="villageno" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>House No:</ion-label>
+        <ion-input placeholder="Enter Village No" id="house" ></ion-input>
+      </ion-item>
+
+      <ion-item>
         <ion-label>*Name:</ion-label>
         <ion-input placeholder="Enter Name" id="name" ></ion-input>
       </ion-item>
@@ -48,17 +76,20 @@
         <ion-input placeholder="Enter Guardian Name" id="gurdian" ></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label>*Polling Station:</ion-label>
-        <ion-select  id="poll" >
-          <ion-select-option>Select</ion-select-option>
-          <ion-select-option *ngFor="let item of dataas; index as pos" value="{{item.dist}}">{{item.dist}}</ion-select-option>
-        </ion-select>
-      </ion-item>
 
-      <ion-item>
+
+      <!-- <ion-item>
         <ion-label>Village:</ion-label>
         <ion-input placeholder="Enter Village"  id="village" ></ion-input>
+      </ion-item> -->
+
+      <!-- <ion-item>
+        <ion-label>Village</ion-label>
+        <ion-select value="Salemthar" id="village">
+          <div *ngFor="let item of row_data">
+            <ion-select-option value="{{item.village}}">{{item.village}}</ion-select-option>
+          </div>
+        </ion-select>
       </ion-item>
 
       <ion-item>
@@ -69,14 +100,17 @@
       <ion-item>
         <ion-label>House No:</ion-label>
         <ion-input placeholder="Enter Village No" id="house" ></ion-input>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
         <ion-label>Voter ID:</ion-label>
         <ion-input placeholder="Enter Voter ID" id="voterid"  ></ion-input>
       </ion-item>
 
-     
+      <ion-item>
+        <ion-label>Remarks:</ion-label>
+        <ion-input placeholder="Enter remarks" id="remarks"  ></ion-input>
+      </ion-item>
 
       <div class="test">
         <ion-label>Suggestions:</ion-label>
